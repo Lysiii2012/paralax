@@ -10,27 +10,31 @@ document.addEventListener("DOMContentLoaded", () => {
     // Инициализация GSAP и ScrollTrigger
     gsap.registerPlugin(ScrollTrigger);
 
+    // Получаем высоту экрана в пикселях
+    const viewportHeight = window.innerHeight;
+    
     // Основной таймлайн для масштабирования и фиксации #parallax1
     let scroll_tl = gsap.timeline({
         scrollTrigger: {
             trigger: '#parallax1',
             start: "top bottom",
-            // end: "+=600", // Длина прокрутки для масштабирования и появления текста
-            pin: true,
+            // Длина прокрутки для масштабирования и появления текста, в зависимости от высоты экрана
+            end: `+=${viewportHeight * 1.5}`, // Используем 1.5 высоты экрана как пример
+            pin: true, // Фиксация #parallax1
             scrub: true,
+            anticipatePin: 1, // Устранение возможных проблем с разрывами
         }
     });
     
     // Анимация изменения масштаба #parallax1
     scroll_tl.to('#parallax1', {
-        scale: 3.8,
+        scale: 4,
         ease: "power1.inOut",
         duration: 1,
-        y: 100, // Смещение вверх (можно подкорректировать для лучшего эффекта)
     });
     
     // Анимация появления #content1 поверх #parallax1
-    scroll_tl.fromTo(
+    gsap.fromTo(
         "#content1",
         {
             opacity: 0, // Начальная прозрачность
@@ -42,18 +46,14 @@ document.addEventListener("DOMContentLoaded", () => {
             ease: "power1.out",
             duration: 1,
             pointerEvents: "auto", // Включаем события клика после появления
-        },
-        "-=0.5" // Начинаем анимацию текстового блока чуть раньше, чтобы не было разрыва
+            scrollTrigger: {
+                trigger: '#content1',
+                start: "top center", // Начало появления текста, когда он находится в центре экрана
+                end: "bottom center", // Окончание появления текста
+                scrub: true,
+            }
+        }
     );
-    
-    // Прокрутка всего блока после появления текста
-    ScrollTrigger.create({
-        trigger: "#content1",
-        start: "top top",
-        end: "bottom top",
-        pin: true, // Фиксируем секцию пока она не будет прокручена до конца
-        scrub: true,
-    });
     
     // Функция для создания анимаций фонов секций
     function triggerSectionAnimations() {
@@ -81,10 +81,10 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
     
-    // Активация анимаций при прокрутке #parallax1
+    // Активация анимаций фонов секций при прокрутке #content1
     ScrollTrigger.create({
         trigger: "#content1",
-        start: "top top", 
+        start: "top top",
         end: "bottom top",
         onEnter: triggerSectionAnimations,
     });
