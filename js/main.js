@@ -10,68 +10,64 @@ document.addEventListener("DOMContentLoaded", () => {
     // Инициализация GSAP и ScrollTrigger
     gsap.registerPlugin(ScrollTrigger);
 
-    // Основной таймлайн для масштабирования #parallax1
+    // Основной таймлайн для масштабирования и фиксации #parallax1
     let scroll_tl = gsap.timeline({
         scrollTrigger: {
-            trigger: '#parallax1', // Элемент, который запускает анимацию
-            start: "top bottom",   // Начало анимации, когда верхняя часть элемента #parallax1 достигает нижней части экрана
-            pin: true,             // Фиксация элемента во время анимации
-            scrub: true,           // Плавное изменение анимации при прокрутке
-            end: "+=300"           // Конец анимации через 300px прокрутки
+            trigger: '#parallax1',
+            start: "top bottom",
+            // end: "+=600", // Длина прокрутки для масштабирования и появления текста
+            pin: true,
+            scrub: true,
         }
     });
-
+    
     // Анимация изменения масштаба #parallax1
     scroll_tl.to('#parallax1', {
-        scale: 3.5,  
-        bottom:200,              // Изменение масштаба до 3.5 раз
-        ease: "power1.inOut",      // Плавная анимация
-        duration: 1                // Длительность анимации
+        scale: 3.8,
+        ease: "power1.inOut",
+        duration: 1,
+        y: 100, // Смещение вверх (можно подкорректировать для лучшего эффекта)
     });
-
-    // Фиксация контента #content1 поверх #parallax1
+    
+    // Анимация появления #content1 поверх #parallax1
+    scroll_tl.fromTo(
+        "#content1",
+        {
+            opacity: 0, // Начальная прозрачность
+            y: 50, // Начальное смещение вниз
+        },
+        {
+            opacity: 1, // Полная видимость
+            y: 0, // Возвращаем на место
+            ease: "power1.out",
+            duration: 1,
+            pointerEvents: "auto", // Включаем события клика после появления
+        },
+        "-=0.5" // Начинаем анимацию текстового блока чуть раньше, чтобы не было разрыва
+    );
+    
+    // Прокрутка всего блока после появления текста
     ScrollTrigger.create({
-        trigger: "#parallax1",
+        trigger: "#content1",
         start: "top top",
         end: "bottom top",
-        pin: "#content1",       // Фиксируем элемент #content1
-        pinSpacing: false,      // Без добавления дополнительных отступов
-        scrub: true,            // Плавная прокрутка
+        pin: true, // Фиксируем секцию пока она не будет прокручена до конца
+        scrub: true,
     });
-
-    // Таймлайн для анимации появления #content1
-    const firstTimeline = gsap.timeline({
-        scrollTrigger: {
-            trigger: "#content1",
-            start: "top bottom",  // Начало анимации, когда #parallax1 достигает центра экрана
-            end: "center top",    // Конец анимации, когда #parallax1 уходит вверх
-            scrub: true,
-            onLeave: () => secondTimeline.play(), // Запуск второго таймлайна при выходе
-        },
-    });
-
-    // Анимация появления #content1
-    firstTimeline.from("#content1", { opacity: 0, y: 0, duration: 1 });
-
-    // Второй таймлайн для анимации фонов секций
-    const secondTimeline = gsap.timeline({ paused: true });
-
+    
     // Функция для создания анимаций фонов секций
     function triggerSectionAnimations() {
-        let getRatio = (el) =>
-            window.innerHeight / (window.innerHeight + el.offsetHeight);
-
+        let getRatio = (el) => window.innerHeight / (window.innerHeight + el.offsetHeight);
+    
         gsap.utils.toArray("section.fly-box").forEach((section, i) => {
             section.bg = section.querySelector(".bg");
-            secondTimeline.fromTo(
+            gsap.fromTo(
                 section.bg,
                 {
-                    backgroundPosition: () =>
-                        i ? `50% ${-window.innerHeight * getRatio(section)}px` : "50% 0px",
+                    backgroundPosition: () => i ? `50% ${-window.innerHeight * getRatio(section)}px` : "50% 0px",
                 },
                 {
-                    backgroundPosition: () =>
-                        `50% ${window.innerHeight * (1 - getRatio(section))}px`,
+                    backgroundPosition: () => `50% ${window.innerHeight * (1 - getRatio(section))}px`,
                     ease: "none",
                     scrollTrigger: {
                         trigger: section,
@@ -84,13 +80,14 @@ document.addEventListener("DOMContentLoaded", () => {
             );
         });
     }
+    
+    // Активация анимаций при прокрутке #parallax1
     ScrollTrigger.create({
-        trigger: "#parallax1",
-        start: "10% 10%",
-        end: "50% 50%",
+        trigger: "#content1",
+        start: "top top", 
+        end: "bottom top",
         onEnter: triggerSectionAnimations,
     });
-    // Запуск анимации фонов при прокрутке #parallax1
     
     
     gsap.registerPlugin(ScrollTrigger);

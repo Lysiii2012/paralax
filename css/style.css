@@ -252,7 +252,7 @@ header>div{
     width: 30%;
     position: absolute;
     width: 30%;
-    height: 200px;
+    height: 100vh;
     left: 35%; 
     background-repeat: no-repeat;
     background-size: 100%;
@@ -280,6 +280,12 @@ header>div{
   }
   .static-block{
     padding: 116px 0 188px;
+  }
+  .static-block>div{
+    padding: 0;
+    padding-bottom: 188px;
+    width: 90%;
+    border-bottom: 1px solid var(--grey);
   }
   .static-block span{
     font-size: calc(1rem + 0.9rem + 4.5vw);
@@ -492,3 +498,4 @@ button.style1 {
   nav>.contact-btn{
     display: none;
   }
+
