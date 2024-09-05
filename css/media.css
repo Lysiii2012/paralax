@@ -1,12 +1,18 @@
 @media screen and (min-width: 1520px) {
     p{
-        font-size: calc(1rem + 0.3rem + 0.6vw);
+        font-size: calc(1rem + 0.3rem + 0.4vw);
     }
     nav a{
         font-size: calc(1rem + 0.3rem + 0.1vw);
     }
     .btn-style{
         font-size: calc(1rem + 0.3rem + 0.2vw);
+    }
+    .page-group-item-ul h4, .page-group-item-ol h4, .page-group-item-text h4{
+        font-size: calc(1rem + 0.4rem + 0.6vw);
+    }
+    h3{
+        font-size: calc(1rem + 0.8rem + 0.5vw);
     }
 }
 @media screen and (max-width:1199px){
@@ -69,7 +75,7 @@
         overflow: hidden;
         top: 100%;
         right: 0;
-        background: var(--black);
+        background: var(--secondary);
         z-index: 300;
         transition: all .4s linear;
     }

@@ -247,4 +247,13 @@ document.addEventListener("DOMContentLoaded", () => {
 //     window.addEventListener("scroll", checkScreenWidth);
 //     window.addEventListener("resize", checkScreenWidth);
  
-    
+var swiper = new Swiper(".swiperProgect", {
+  slidesPerView: 2.2,
+  spaceBetween: 40, 
+  loop:true,
+  breakpoints: {
+    1450:{
+      slidesPerView: 3,
+    }
+  }
+});
