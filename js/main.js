@@ -1,38 +1,53 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const nav = document.querySelector('.header-nav')
-    document.querySelector('.burger-btn').addEventListener('click', function() {
-          this.classList.toggle('open');
-          nav.classList.toggle('active');
-        }); 
+  const nav = document.querySelector('.header-nav');
+  const burgerBtn = document.querySelector('.burger-btn');
+  
+  burgerBtn.addEventListener('click', function() {
+      this.classList.toggle('open');
+      nav.classList.toggle('active');
+  });
+  
+  document.addEventListener('click', function(event) { 
+      if (!nav.contains(event.target) && !burgerBtn.contains(event.target)) { 
+          nav.classList.remove('active');
+          burgerBtn.classList.remove('open');
+      }
+  });
 
+  gsap.registerPlugin(ScrollTrigger);
 
-
-    // Инициализация GSAP и ScrollTrigger
-    gsap.registerPlugin(ScrollTrigger);
-
-    // Получаем высоту экрана в пикселях
+// Функция для инициализации анимации
+function initAnimation() { 
     const viewportHeight = window.innerHeight;
-    
-    // Основной таймлайн для масштабирования и фиксации #parallax1
+     
     let scroll_tl = gsap.timeline({
         scrollTrigger: {
             trigger: '#parallax1',
-            start: "top bottom",
-            // Длина прокрутки для масштабирования и появления текста, в зависимости от высоты экрана
-            end: `+=${viewportHeight * 1.5}`, // Используем 1.5 высоты экрана как пример
-            pin: true, // Фиксация #parallax1
+            start: "top bottom", 
+            end: `+=${viewportHeight * 1.5}`,  
+            pin: true,  
             scrub: true,
-            anticipatePin: 1, // Устранение возможных проблем с разрывами
+            anticipatePin: 1, 
         }
-    });
-    
-    // Анимация изменения масштаба #parallax1
+    }); 
+
     scroll_tl.to('#parallax1', {
         scale: 4,
         ease: "power1.inOut",
         duration: 1,
     });
-    
+}
+ 
+if (window.innerWidth >= 780) {
+    initAnimation();
+}
+ 
+window.addEventListener('resize', () => {
+    if (window.innerWidth >= 780) {
+        initAnimation();
+    }
+});
+ 
     // Анимация появления #content1 поверх #parallax1
     gsap.fromTo(
         "#content1",
@@ -91,38 +106,33 @@ document.addEventListener("DOMContentLoaded", () => {
     
     
     gsap.registerPlugin(ScrollTrigger);
-
-    // Create a timeline for animations
+ 
     gsap.utils.toArray(".fixed-block").forEach((block, i) => {
       const content = block.querySelector(".fixed-content");
       const media = block.querySelector(".media-content");
-    
-      // Create a GSAP timeline for each block
+     
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: block,
-          start: "top 80%", // Adjust as needed
-          end: "top 40%",   // Adjust as needed
+          start: "top 80%", 
+          end: "top 40%",   
           scrub: true,
-          markers: false,   // Set to true for debugging
-          onEnter: () => {
-            // Fade in current content when scrolling down
+          markers: false,   
+          onEnter: () => { 
             gsap.to(content, {
               opacity: 1,
               y: 0,
               duration: 1,
               ease: "power2.out",
             });
-    
-            // Fade in and slide media content when scrolling down
+     
             gsap.to(media, {
               opacity: 1,
               x: 0,
               duration: 1.2,
               ease: "power2.out",
             });
-    
-            // Fade out previous content if it exists
+     
             if (i > 0) {
               const prevContent = gsap.utils.toArray(".fixed-block")[i - 1].querySelector(".fixed-content");
               gsap.to(prevContent, {
@@ -133,8 +143,7 @@ document.addEventListener("DOMContentLoaded", () => {
               });
             }
           },
-          onEnterBack: () => {
-            // Fade in previous content when scrolling up
+          onEnterBack: () => { 
             if (i > 0) {
               const prevContent = gsap.utils.toArray(".fixed-block")[i - 1].querySelector(".fixed-content");
               gsap.to(prevContent, {
@@ -144,16 +153,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 ease: "power2.out",
               });
             }
-    
-            // Fade out current content when scrolling up
+     
             gsap.to(content, {
               opacity: 0,
               y: 20,
               duration: 1,
               ease: "power2.out",
             });
-    
-            // Fade in and slide media content when scrolling up
+     
             gsap.to(media, {
               opacity: 1,
               x: 0,
@@ -163,8 +170,7 @@ document.addEventListener("DOMContentLoaded", () => {
           }
         }
       });
-    
-      // Add media slide animation
+      
       tl.fromTo(media, 
         { opacity: 0, x: i % 2 === 0 ? 50 : -50 }, 
         { opacity: 1, x: 0, duration: 1.2, ease: "power2.out" }
@@ -246,14 +252,47 @@ document.addEventListener("DOMContentLoaded", () => {
 //     checkScreenWidth();
 //     window.addEventListener("scroll", checkScreenWidth);
 //     window.addEventListener("resize", checkScreenWidth);
- 
-var swiper = new Swiper(".swiperProgect", {
-  slidesPerView: 2.2,
-  spaceBetween: 40, 
-  loop:true,
-  breakpoints: {
-    1450:{
-      slidesPerView: 3,
-    }
-  }
+document.addEventListener('DOMContentLoaded', () => {
+  const tabs = document.querySelectorAll('a[data-item]');
+  const contentItems = document.querySelectorAll('.types-modular-content-item ul');
+
+  tabs.forEach(tab => {
+      tab.addEventListener('click', (event) => {
+          event.preventDefault();
+          const targetId = tab.getAttribute('data-item'); 
+          tabs.forEach(t => t.classList.remove('active')); 
+          tab.classList.add('active'); 
+          contentItems.forEach(item => item.classList.remove('active')); 
+          document.getElementById(targetId).classList.add('active');
+      });
+  });
 });
+if (window.innerWidth >= 575) {
+  const swiperElements = document.querySelectorAll(".swiperProgect");
+  
+  if (swiperElements.length > 0) {
+    var swiper = new Swiper(".swiperProgect", {
+      slidesPerView: 2.2,
+      spaceBetween: 20,
+      loop: true,
+      breakpoints: {
+        575: {
+          slidesPerView: 2.1,
+          spaceBetween: 20,
+        },
+        767: {
+          slidesPerView: 2.2,
+        },
+        1199: {
+          slidesPerView: 3,
+          spaceBetween: 30,
+        },
+        1450: {
+          slidesPerView: 3,
+          spaceBetween: 40,
+        }
+      }
+    });
+  }
+}
+
