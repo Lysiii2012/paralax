@@ -392,7 +392,7 @@ header>div{
   .media-content {
     width: 60%;
     opacity: 0; /* Start hidden */
-    transform: translateX(50px); /* Initial slide effect, adjust for direction */
+    /* transform: translateX(50px); Initial slide effect, adjust for direction */
     position: relative;
     bottom: -80vh; /* Adjust this to control initial positioning */
     transition: all 0.5s ease-out;
@@ -496,6 +496,11 @@ footer .footer-form{
 }
 .footer-info-site a, .footer-info-site p{
     color: #626262;
+    font-size: 16px;
+    transition: all .3s linear;
+}
+.footer-info-site a:hover{
+  color: var(--primery);
 }
 button.style1 {
     background: none;
