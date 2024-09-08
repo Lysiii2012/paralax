@@ -141,6 +141,9 @@
         flex-direction: column;
         gap: 20px;
     }
+    .screen-wrap{
+        display: none;
+    }
     .media-content{
         transform: translateX(20px);
     }
@@ -149,6 +152,7 @@
     }
     button.style1{
         display: block;
+        line-height: 0;
     }
     .higth{
         display: none;

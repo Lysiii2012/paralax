@@ -171,9 +171,12 @@ header>div{
     gap: 10px;
     position: relative;
 }
-.menu-item-has-children{
-    position: relative;
+header>div{
+  position: relative;
 }
+/* .menu-item-has-children{
+    position: relative;
+} */
 .sub-menu a{
     display: flex;
     flex-direction: column;
@@ -188,7 +191,7 @@ header>div{
    position: absolute;
    top: 100%;
    width: 50vw;
-   left: 0;
+   left: 25vw;
    transition: all .4s linear;
    background: var(--secondary);
    z-index: 3;
@@ -209,8 +212,10 @@ header>div{
     width: 26%;
 }
 .top-screen{
-    height: 90vh;
+    height: 100vh;
     position: relative;
+    /* position: sticky;
+    top: 105px; */
 }
 .top-screen-info p+p{
     width: 23%;
@@ -253,37 +258,67 @@ header>div{
 }
  .higth{
   height: 65vh;
-  display: block;
+  display: block; 
  }
-.video-container-scale {
-    width: 30%;
+ .video-box{
+  position: sticky;
+  top: 0;
+ }
+.video-container-scale { 
     position: absolute;
-    width: 30%; 
-    height: 100vh;
-    left: 35%; 
+    width: 36%; 
+    height: 50vh;
+    left: 32%; 
+    /* top: -200px; */
     background-repeat: no-repeat;
     background-size: 100%;
     background-position: center;
 }
  
+ .screen-wrap{
+  position: sticky;
+  top: 0; 
+  height: 100vh;
+ }
 .fly-container .fly-box {
     position: relative;
-    height: 100vh;
+    height: 105vh;
     display: flex;
     align-items: center;
     z-index: 3;
     justify-content: center;
+    position: sticky;
+    top: 0;
   }
   .bg {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 105vh;
+    display: block;
     z-index: -1;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+  }
+  .bg img,   .bg video{
+    max-width: 100%;
+    max-width: 100%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+  .sticky {
+    opacity: 0;
+    transform: translateY(20px); /* Initial position for the animation */
+    transition: opacity 1s ease, transform 1s ease; /* Smooth transition */
+  }
+  
+  .sticky.visible {
+    opacity: 1;
+    transform: translateY(0); /* Move to the final position */
   }
   .static-block{
     padding: 116px 0 188px;
@@ -331,11 +366,14 @@ header>div{
  
   #content1 {
     display: flex;
-    margin-top: -200px;
+    /* padding-top: 100px;  */
+    /* margin-top: -200px; */
     align-items: center;   /* Вертикальное центрирование */
-    justify-content: center; /* Горизонтальное центрирование */
-    height: 100vh; /* Обеспечивает, что элемент занимает всю высоту экрана */
-}
+    justify-content: flex-start;/* Горизонтальное центрирование */
+    /* Обеспечивает, что элемент занимает всю высоту экрана */
+    /* position: sticky;
+    top: 0; */
+  }
  
   .fixed-content {
     position: sticky;
@@ -545,7 +583,7 @@ button.style1 {
     width: 100vw;
     position: sticky;
     top: 0;
-    height: 60vh;
+    height: 100vh;
   }
 
   .page-content-top>.container{
