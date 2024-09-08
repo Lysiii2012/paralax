@@ -30,9 +30,9 @@ document.addEventListener("DOMContentLoaded", () => {
               anticipatePin: 1,
           }
       }).to('#parallax1', {   
-          scale: 5.4,
+          scale: 7.4,
           ease: "power1.inOut",
-          duration: 1, // Controls the speed of the scaling
+          duration: 2, // Controls the speed of the scaling
       });
   }
   
@@ -58,10 +58,11 @@ document.addEventListener("DOMContentLoaded", () => {
           opacity: 1, // Full visibility 
           ease: "power1.out",
           duration: 1,
+          y:-200,
           pointerEvents: "auto", // Allows clicks after it appears
           scrollTrigger: {
               trigger: '#content1',
-              start: "top center", // Animation starts when #content1 reaches the center
+              start: "top 40%", // Animation starts when #content1 reaches the center
               end: "bottom center", // Ends when #content1 fully scrolls into view
               scrub: true,
           }
@@ -81,17 +82,18 @@ document.addEventListener("DOMContentLoaded", () => {
               },
               {
                   backgroundPosition: () => `50% ${window.innerHeight * (1 - getRatio(section))}px`,
-                  ease: "none",
+                  ease: "none", 
                   scrollTrigger: {
                       trigger: section,
                       start: () => (i ? "top bottom" : "top top"),
                       end: "bottom top",
                       scrub: true,
                       invalidateOnRefresh: true,
+                      duration: 0.4,
                   },
               }
           );
-      });
+      }); 
   }
   
   // Step 4: Delay triggering section animations until #content1 completes
