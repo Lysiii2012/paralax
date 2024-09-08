@@ -236,8 +236,8 @@ document.addEventListener("DOMContentLoaded", () => {
     
       // Define the scroll range where the animation should occur
       const startScroll = 0; // Starting scroll position (adjust as needed)
-      const endScroll = 100;   // Ending scroll position (adjust as needed)
-      const initialTop = -100;  // Initial top position of 200px
+      const endScroll = 800;   // Ending scroll position (adjust as needed)
+      const initialTop = -200;  // Initial top position of 200px
       const finalTop = 0;      // Final top position of 0px
     
       // Check if the element and scroll position are within the defined range
