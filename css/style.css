@@ -206,7 +206,7 @@ header>div{
     max-height: 200px;
 }
 .top-screen-info p{
-    width: 30%;
+    width: 26%;
 }
 .top-screen{
     height: 90vh;
@@ -251,10 +251,14 @@ header>div{
     margin: 10px auto 50px;
     max-width: 24vw;
 }
+ .higth{
+  height: 65vh;
+  display: block;
+ }
 .video-container-scale {
     width: 30%;
     position: absolute;
-    width: 30%;
+    width: 30%; 
     height: 100vh;
     left: 35%; 
     background-repeat: no-repeat;
@@ -324,12 +328,15 @@ header>div{
 .fixed-block {
     height: 200vh;
   }
+ 
   #content1 {
     display: flex;
+    margin-top: -200px;
     align-items: center;   /* Вертикальное центрирование */
     justify-content: center; /* Горизонтальное центрирование */
     height: 100vh; /* Обеспечивает, что элемент занимает всю высоту экрана */
-} 
+}
+ 
   .fixed-content {
     position: sticky;
     top: 30%;
@@ -530,6 +537,8 @@ button.style1 {
   }
   .page-content-title p{
     width: 40%;
+    margin: 0 0 10px;
+    font-size: calc(1rem + 0.3rem + 0.2vw);
   }
   .images-page{
     height: fit-content;
@@ -778,8 +787,17 @@ button.style1 {
     flex-direction: column;
     justify-content: center;
     text-align: left;
+    color: var(--secondary);
   }
-
+  .swiperProgect .swiper-slide  h3{
+    text-decoration: none; 
+    text-decoration-color: transparent;
+    transition: all .5s linear;
+  } 
+  .swiperProgect .swiper-slide:hover  h3{
+    text-decoration: underline;
+    text-decoration-color: var(--secondary);
+  }
   .swiper-slide img {
     display: block;
     width: 100%;
@@ -817,9 +835,13 @@ button.style1 {
 .types-modular-content-item ul.active {
     display: flex;  
 }
-  .module-content-box>div{
+  .module-content-box .module-content-link{
         position: relative;  
-        height: 540px; 
+        height: 540px;
+        display: block; 
+  }
+  .module-content-link .whitw-btn:hover{
+    color: var(--primery);
   }
   .module-content-box img{
     width: 100%;

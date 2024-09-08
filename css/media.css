@@ -59,6 +59,10 @@
         padding-left: 20px;
         padding-right: 20px;
     }
+
+    .page-content-title p{
+        width: 90%;
+    }
     .media-content{
         width: 100%;
     }
@@ -87,10 +91,10 @@
     .page-group-item-ul>div:first-child, .page-group-item-ol>h3:first-child, .page-group-item-ul h3, .page-group-item-ol h3, .page-group-item-ul>div>p, .page-group-item-ol>div>p{
         max-width: 90%;
     }
-    .page-content-title{
+    /* .page-content-title{
         align-items: center;
-    }
-    .module-content-box>div{
+    } */
+    .module-content-box .module-content-link{
         height: 480px;
     }
 } 
@@ -219,9 +223,41 @@
     .swiper-slide-image{
         height: 360px;
     }
-    .module-content-box>div{
+    .module-content-box .module-content-link{
         height: 360px;
     }
+    header nav li{
+        transform: translateX(101%);
+        transition: all .5s ease-in-out;
+    }
+    .header-nav{
+        transform: translateX(0);
+    }
+    .sub-menu a{
+        justify-content: flex-start;
+    }
+    .header-nav.active li{
+        transform: translateX(0);    
+    }
+    .header-nav.active>ul>li:first-child {      
+        transition: all 1s ease-out;
+      } 
+      .header-nav.active>ul>li:nth-child(2) {      
+        transition: all 1.1s ease-out;
+      } 
+      .header-nav.active>ul>li:nth-child(3) {      
+        transition: all 1.2s ease-out;
+      } 
+      .header-nav.active>ul>li:nth-child(4) {      
+        transition: all 1.3s ease-out;
+      } 
+      .header-nav.active>ul>li:nth-child(5) {      
+        transition: all 1.4s ease-out;
+      }
+     .header-nav li{
+        width: 100%;
+        display: block;
+      }
 }
 @media screen and (max-width:767px){
     footer .footer-form{
@@ -312,7 +348,7 @@
     .page-group-item-text{
         padding: 100px 0;
     }
-    .swiper-slide-image,.module-content-box>div{
+    .swiper-slide-image,.module-content-box ..module-content-link{
         height: 320px;
     }
     .module-content-items .item-module-content{
