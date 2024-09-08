@@ -392,7 +392,7 @@ header>div{
   .media-content {
     width: 60%;
     opacity: 0; /* Start hidden */
-    /* transform: translateX(50px); Initial slide effect, adjust for direction */
+    transform: translateX(0) !important; /* Initial slide effect, adjust for direction */
     position: relative;
     bottom: -80vh; /* Adjust this to control initial positioning */
     transition: all 0.5s ease-out;
