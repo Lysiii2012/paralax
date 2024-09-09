@@ -232,12 +232,15 @@ document.addEventListener("DOMContentLoaded", () => {
     function updateVideoContainerPosition() {
       const videoContainer = document.querySelector('.video-container-scale');
       
+      // Skip the function if the element doesn't exist
+      if (!videoContainer) return;
+    
       // Define the scroll range where the animation should occur
       const startScroll = 0; // Starting scroll position (adjust as needed)
-      const endScroll = 0; // Ending scroll position (adjust as needed)
-      const initialTop = 0; // Initial top position
-      const finalTop = 0; // Final top position
-      
+      const endScroll = 0;   // Ending scroll position (adjust as needed)
+      const initialTop = 0;  // Initial top position
+      const finalTop = 0;    // Final top position
+    
       // Check if the element and scroll position are within the defined range
       if (window.scrollY >= startScroll && window.scrollY <= endScroll) {
         // Calculate the new top position based on scroll
@@ -267,9 +270,16 @@ document.addEventListener("DOMContentLoaded", () => {
     
     function checkScreenWidth() {
       const videoContainer = document.getElementById("parallax1");
+      
+      // Skip the function if the element doesn't exist
+      if (!videoContainer) return;
+      
       const image = videoContainer.querySelector(".video-box");
       const content1 = document.getElementById('content1');
-      
+    
+      // Skip the function if required elements are not found
+      if (!image || !content1) return;
+    
       if (window.scrollY >= 100 && window.scrollY <= 600) {
         // Scale the image based on scroll position
         const scaleValue = Math.min(1 + ((window.scrollY - 80) / 130) * 0.5, 3.5); // Limit max scale to 3.5
@@ -307,6 +317,7 @@ document.addEventListener("DOMContentLoaded", () => {
     checkScreenWidth();
     window.addEventListener("scroll", checkScreenWidth);
     window.addEventListener("resize", checkScreenWidth);
+    
     
 
 
