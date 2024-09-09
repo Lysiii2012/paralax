@@ -24,6 +24,7 @@
         height: 70vh;
     }
 }
+
 @media screen and (max-width:1470px){
     .types-modular-content h3{
         width: 70%;
@@ -35,6 +36,9 @@
 @media screen and (max-width:1290px){
     .page-content-body{
         padding-top: 0;
+    }
+    .menu-item-has-children:hover .sub-menu{
+        max-height: 160px;
     }
     .page-content-body h4{
         max-width: 70%;
@@ -71,7 +75,10 @@
         padding-left: 20px;
         padding-right: 20px;
     }
-
+    .sub-menu{
+        width: 70vw;
+        left: 15vw;
+    }
     .page-content-title p{
         width: 90%;
     }

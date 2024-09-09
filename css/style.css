@@ -108,6 +108,7 @@ header .container{
 header nav ul{
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 35px;
 }
 header{
@@ -185,11 +186,11 @@ header>div{
    overflow: hidden;
    position: absolute;
    top: 100%;
+   z-index: 9;
    width: 50vw;
    left: 25vw;
    transition: all .4s linear;
-   background: var(--secondary);
-   z-index: 3;
+   background: var(--secondary); 
 } 
 .sub-menu li{
     padding: 40px;
