@@ -230,15 +230,18 @@
     .sub-menu a{
         flex-direction: row;
     }
+    .menu-item-has-children .sub-menu{
+        max-height: 0px;
+    }
     .sub-menu li{
         padding: 20px;
         margin-right: auto;
     }
-    .menu-item-has-children:hover .sub-menu{
+    .menu-item-has-children .sub-menu{
         height: auto;
         gap: 0;
         padding: 0; 
-        max-height: 800px;
+        max-height: 0px;
     }
     .sub-menu img{
         width: 100px;
