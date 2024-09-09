@@ -229,32 +229,35 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-
-
     function updateVideoContainerPosition() {
       const videoContainer = document.querySelector('.video-container-scale');
-    
+      
       // Define the scroll range where the animation should occur
       const startScroll = 0; // Starting scroll position (adjust as needed)
-      const endScroll = 800;   // Ending scroll position (adjust as needed)
-      const initialTop = -200;  // Initial top position of 200px
-      const finalTop = 0;      // Final top position of 0px
-    
+      const endScroll = 0; // Ending scroll position (adjust as needed)
+      const initialTop = 0; // Initial top position
+      const finalTop = 0; // Final top position
+      
       // Check if the element and scroll position are within the defined range
       if (window.scrollY >= startScroll && window.scrollY <= endScroll) {
         // Calculate the new top position based on scroll
         const scrollFraction = (window.scrollY - startScroll) / (endScroll - startScroll);
         const newTop = initialTop - scrollFraction * initialTop; // Linearly interpolate top value
-    
+        
         // Apply the calculated top position to the video container
         videoContainer.style.top = `${newTop}px`;
         videoContainer.style.position = 'absolute'; // Ensure absolute positioning for smooth movement
+        videoContainer.style.bottom = '0'; // Ensure bottom is 0
       } else if (window.scrollY < startScroll) {
         // Set the initial position if scrolling above the start point
         videoContainer.style.top = `${initialTop}px`;
+        videoContainer.style.position = 'absolute'; // Ensure absolute positioning
+        videoContainer.style.bottom = '0'; // Ensure bottom is 0
       } else {
         // Set the final position if scrolling below the end point
         videoContainer.style.top = `${finalTop}px`;
+        videoContainer.style.position = 'absolute'; // Ensure absolute positioning
+        videoContainer.style.bottom = '0'; // Ensure bottom is 0
       }
     }
     
@@ -262,35 +265,32 @@ document.addEventListener("DOMContentLoaded", () => {
     updateVideoContainerPosition();
     window.addEventListener('scroll', updateVideoContainerPosition);
     
-
     function checkScreenWidth() {
       const videoContainer = document.getElementById("parallax1");
-      const image = videoContainer.querySelector("img");
+      const image = videoContainer.querySelector(".video-box");
       const content1 = document.getElementById('content1');
-    
+      
       if (window.scrollY >= 100 && window.scrollY <= 600) {
         // Scale the image based on scroll position
-        const scaleValue = 1 + ((window.scrollY - 90) / 170) * 1;
+        const scaleValue = Math.min(1 + ((window.scrollY - 80) / 130) * 0.5, 3.5); // Limit max scale to 3.5
         image.style.transform = `scale(${scaleValue})`;
-    
+        
         // Calculate the top value
-        const topValue = `${-100 * ((window.scrollY - 100) / 100)}%`;
+        const topValue = `${Math.max(100 * ((window.scrollY - 100) / 80), 0)}%`; // Limit the top position
         image.style.top = topValue;
-    
-        // Check if the scale value is 3 or more, set content1 opacity to 1
-        if (scaleValue >= 3) {
+        
+        // Check if the scale value is close to the maximum, set content1 opacity to 1
+        if (scaleValue >= 1.5) {
           content1.style.opacity = '1';
           content1.style.transition = 'opacity 1s ease'; // Smooth transition
         } else {
           content1.style.opacity = '0';
         }
-    
-        // Check if the top value is close to 0, then apply sticky positioning
+        
+        // Adjust the image positioning based on the top value
         if (parseFloat(topValue) >= 0) {
           image.style.position = 'sticky';
           image.style.top = '0';
-          image.style.right = '0';
-          image.style.left = '0';
         } else {
           image.style.position = 'absolute';
         }
