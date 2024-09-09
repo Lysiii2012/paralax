@@ -14,6 +14,17 @@ document.addEventListener("DOMContentLoaded", () => {
       }
   });
 
+  if (window.innerWidth <= 870) {
+    const subNav = document.querySelector('.sub-menu');
+    subNav.classList.add('active');
+    
+    const btnSubNav = document.querySelector('.menu-item-has-children>a');
+    btnSubNav.addEventListener('click', (e) => {
+      e.preventDefault();
+      subNav.classList.toggle('active')
+    })
+
+  }
   // gsap.registerPlugin(ScrollTrigger);
 
   // function initAnimation() {
@@ -388,3 +399,5 @@ const observer = new IntersectionObserver(handleIntersection, {
 document.querySelectorAll('.sticky').forEach(box => {
   observer.observe(box);
 });
+
+

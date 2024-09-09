@@ -221,6 +221,12 @@
         position: static;
         margin: 0;
     }
+    .sub-menu{
+        gap: 0;
+    }
+    .sub-menu.active{
+        max-height: max-content;
+    }
     .sub-menu a{
         flex-direction: row;
     }
@@ -313,6 +319,9 @@
         opacity: 0;
         transition: all .25s ease-in-out;
       }
+      ul li.menu-item-has-children>a{
+        display: flex;
+    }
       .header-nav.active .btn-style{
         transform: translate3d(0, 0, 0);
         opacity: 1;

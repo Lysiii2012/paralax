@@ -166,6 +166,7 @@ header>div{
     background-repeat: no-repeat;
     width: 20px;
     height: 10px;
+    display: block;
     transition: all .4s linear;
 }
 .menu-item-has-children:hover a::after{
