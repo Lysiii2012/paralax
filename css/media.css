@@ -224,7 +224,7 @@
     .sub-menu{
         gap: 0;
     }
-    .sub-menu.active{
+    .menu-item-has-children .sub-menu.active{
         max-height: max-content;
     }
     .sub-menu a{
