@@ -235,6 +235,9 @@ header>div{
     display: block;
     width: 100%;
 }
+.video-container-scale{
+  top: 0;
+}
 .wrapper{
     position: relative; 
     /* width: 100vw;

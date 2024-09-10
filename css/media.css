@@ -32,6 +32,9 @@
     .types-modular{
         padding-top: 80px;
     }
+    .top-screen-info{
+        bottom: -24vh;
+    }
 }
 @media screen and (max-width:1290px){
     .page-content-body{
