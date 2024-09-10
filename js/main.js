@@ -16,6 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (window.innerWidth <= 870) {
     const subNav = document.querySelector(".sub-menu");
+    const subItem = document.querySelector('.menu-item-has-children')
     const btnSubNav = document.querySelector(".menu-item-has-children > a");
 
     if (subNav) {
@@ -27,6 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
         e.preventDefault();
         if (subNav) {
           subNav.classList.toggle("active");
+          subItem.classList.toggle("hidden");
         }
       });
     }
